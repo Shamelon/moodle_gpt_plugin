@@ -1,0 +1,7 @@
+.list-group-item-action:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+}
+.btn-outline-primary, .btn-outline-danger {
+    pointer-events: auto;
+}

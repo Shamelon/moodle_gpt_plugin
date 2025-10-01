@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMLDB PATH="local/gptassistant/db" VERSION="2011102902" COMMENT="GPT Assistant plugin database tables">
+    <TABLES>
+        <TABLE NAME="local_gptassistant_tasks" COMMENT="Stores GPT Assistant tasks">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Primary key"/>
+                <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="Task title"/>
+                <FIELD NAME="content" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="Task content"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation timestamp"/>
+                <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Modification timestamp"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key"/>
+            </KEYS>
+        </TABLE>
+        <TABLE NAME="local_gptassistant_answers" COMMENT="Stores task answers">
+            <FIELDS>
+                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="Primary key"/>
+                <FIELD NAME="taskid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Task reference"/>
+                <FIELD NAME="answer" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="Answer text"/>
+                <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Creation time"/>
+            </FIELDS>
+            <KEYS>
+                <KEY NAME="primary" TYPE="primary" FIELDS="id" COMMENT="Primary key"/>
+                <KEY NAME="taskfk" TYPE="foreign" FIELDS="taskid" REFTABLE="local_gptassistant_tasks" REFFIELDS="id" COMMENT="Foreign key to tasks"/>
+            </KEYS>
+        </TABLE>
+    </TABLES>
+</XMLDB>
